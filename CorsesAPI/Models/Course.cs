@@ -31,6 +31,6 @@ namespace CorsesAPI.Models
         public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
         public DateTime UpdatedAt { get; set; } = DateTime.UtcNow;
 
-        public Category Category { get; set; }
+        public Category? Category { get; set; }
     }
 }

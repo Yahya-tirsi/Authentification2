@@ -17,6 +17,19 @@ namespace CorsesAPI.Controllers
             _context = context;
         }
 
+        // POST: api/Courses
+        [HttpPost]
+        public async Task<ActionResult<Course>> PostCourse(Course course)
+        {
+            course.CreatedAt = DateTime.UtcNow;
+            course.UpdatedAt = DateTime.UtcNow;
+
+            _context.Courses.Add(course);
+            await _context.SaveChangesAsync();
+
+            return CreatedAtAction(nameof(GetCourse), new { id = course.CourseId }, course);
+        }
+
         // GET: api/Courses/ByCategory/5
         [HttpGet("ByCategory/{categoryId}")]
         public async Task<ActionResult<IEnumerable<Course>>> GetCoursesByCategory(int categoryId)
@@ -41,6 +54,13 @@ namespace CorsesAPI.Controllers
             }
 
             return course;
+        }
+
+        // GET: api/Courses
+        [HttpGet]
+        public async Task<ActionResult<IEnumerable<Course>>> GetCategories()
+        {
+            return await _context.Courses.ToListAsync();
         }
     }
 }

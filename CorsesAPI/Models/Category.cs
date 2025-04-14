@@ -23,6 +23,6 @@ namespace CorsesAPI.Models
 
         // This solution for API don't read 
         [JsonIgnore]
-        public ICollection<Course> Courses { get; set; }
+        public List<Course>? Courses { get; set; }
     }
 }

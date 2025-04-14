@@ -81,7 +81,7 @@ namespace YourNamespace.Controllers
             }
 
             var token = GenerateJwtToken(user);
-            return Ok(new { token });
+            return Ok(new { user.Email, token });
         }
 
         private string GenerateJwtToken(User user)

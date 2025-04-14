@@ -37,5 +37,20 @@ namespace CorsesAPI.Controllers
 
             return category;
         }
+
+        // POST: api/Categories
+        [HttpPost]
+        public async Task<ActionResult<Category>> PostCategory(Category category)
+        {
+          
+            category.CreatedAt = DateTime.UtcNow;
+            category.UpdatedAt = DateTime.UtcNow;
+
+            _context.Categories.Add(category);
+            await _context.SaveChangesAsync();
+
+            return CreatedAtAction(nameof(GetCategory), new { id = category.CategoryId }, category);
+        }
+
     }
 }
